@@ -1,0 +1,22 @@
+<div class="container">
+<h1>Write a Review for</h1>
+<h2><%=@restaurant.name%></h2>
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+
+  <div class="slider-container">
+    <h3><%= f.label :rating, "Rating" %> => <span id="slider-value">3</span></h3>
+    <%= f.input :rating, label: false, input_html: { type: 'range', min: 1, max: 5, step: 1, id: 'rating-slider', oninput: "updateSliderValue(this.value)" } %>
+     <!-- Default to 3 as a midpoint for the initial display -->
+  </div>
+
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
+
+<script>
+  function updateSliderValue(value) {
+    document.getElementById('slider-value').textContent = value;
+  }
+</script>
+
+</div>
